@@ -1,0 +1,32 @@
+{
+  "name": "strava-api-tools",
+  "version": "0.1.0",
+  "description": "Personal project for different exports and data manipulations in Strava.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "prettify": "prettier . --write",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MacHonzee/strava-api-tools.git"
+  },
+  "keywords": [
+    "Strava",
+    "API"
+  ],
+  "author": "Jan Rudolf",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/MacHonzee/strava-api-tools/issues"
+  },
+  "homepage": "https://github.com/MacHonzee/strava-api-tools#readme",
+  "dependencies": {
+    "axios": "^1.7.2"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "3.3.3"
+  }
+}

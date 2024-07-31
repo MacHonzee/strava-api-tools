@@ -99,8 +99,11 @@ class StravaClient {
     return this.#call("GET", "/athlete");
   }
 
-  async listActivities(before, after) {
-    return this.#call("GET", "/athlete/activities", { before, after });
+  async listActivities(page, perPage) {
+    return this.#call("GET", "/athlete/activities", {
+      page,
+      per_page: perPage,
+    });
   }
 
   async getActivityZones(activityId) {

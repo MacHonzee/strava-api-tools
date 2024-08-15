@@ -21,5 +21,5 @@ Personal project for different exports and data manipulations in Strava.
 
 ## How to export all activities
 
-1) Run `node export_activities.js`
+1) Run `npm run exportAllData`
 2) The activities will be exported to the `exports` folder

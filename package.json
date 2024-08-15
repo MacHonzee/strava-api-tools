@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "prettify": "prettier . --write",
-    "test": "jest"
+    "test": "jest",
+
+    "exportAllData": "node ./src/scripts/export-all-data.js"
   },
   "repository": {
     "type": "git",

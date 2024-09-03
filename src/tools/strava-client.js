@@ -169,6 +169,14 @@ class StravaClient {
     });
   }
 
+  async getActivityStreams(activityId) {
+    return this.#call("GET", `/activities/${activityId}/streams`, {
+      keys: "time,latlng,distance,altitude,velocity_smooth,heartrate,moving,grade_smooth",
+      // key_by_type: true,
+      // series_type: "time",
+    });
+  }
+
   async getActivityZones(activityId) {
     return this.#call("GET", `/activities/${activityId}/zones`);
   }

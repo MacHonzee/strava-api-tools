@@ -1,25 +1,34 @@
-# Strava API Tools
+# strava-api-tools
 
-Personal project for different exports and data manipulations in Strava.
+An Electron application with React and TypeScript
 
-# How to set up
+## Recommended IDE Setup
 
-1) Create a Strava API application at https://www.strava.com/settings/api
-2) Create a folder named `credentials` in the root of the project
-3) Create a file named `strava_credentials.json` in the `credentials` folder
-4) Add the following content to the `strava_credentials.json` file:
-```json
-{
-  "clientId": "YOUR_CLIENT_ID",
-  "clientSecret": "YOUR_CLIENT_SECRET",
-  "refreshToken": "YOUR_REFRESH_TOKEN"
-}
+- [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+
+## Project Setup
+
+### Install
+
+```bash
+$ npm install
 ```
-    
-5) Install Node.js, see guide at https://nodejs.org/en/download/
-6) Run `npm install` in the root of the project
 
-## How to export all activities
+### Development
 
-1) Run `npm run exportAllData`
-2) The activities will be exported to the `exports` folder
+```bash
+$ npm run dev
+```
+
+### Build
+
+```bash
+# For windows
+$ npm run build:win
+
+# For macOS
+$ npm run build:mac
+
+# For Linux
+$ npm run build:linux
+```

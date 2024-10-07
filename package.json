@@ -1,35 +1,60 @@
 {
   "name": "strava-api-tools",
-  "version": "0.1.0",
-  "description": "Personal project for different exports and data manipulations in Strava.",
-  "main": "index.js",
-  "type": "module",
+  "version": "1.0.0",
+  "description": "An Electron application with React and TypeScript",
+  "main": "./out/main/index.js",
+  "author": "example.com",
+  "homepage": "https://electron-vite.org",
   "scripts": {
-    "prettify": "prettier . --write",
-    "test": "jest",
-    "exportAllData": "node ./src/scripts/export-all-data.js"
+    "format": "prettier --write strava-api-tools",
+    "lint": "eslint strava-api-tools --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
+    "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false",
+    "typecheck:web": "tsc --noEmit -p tsconfig.web.json --composite false",
+    "typecheck": "npm run typecheck:node && npm run typecheck:web",
+    "start": "electron-vite preview",
+    "dev": "electron-vite dev",
+    "build": "npm run typecheck && electron-vite build",
+    "postinstall": "electron-builder install-app-deps",
+    "build:unpack": "npm run build && electron-builder --dir",
+    "build:win": "npm run build && electron-builder --win",
+    "build:mac": "electron-vite build && electron-builder --mac",
+    "build:linux": "electron-vite build && electron-builder --linux"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MacHonzee/strava-api-tools.git"
-  },
-  "keywords": [
-    "Strava",
-    "API"
-  ],
-  "author": "Jan Rudolf",
-  "license": "GPL-3.0-or-later",
-  "bugs": {
-    "url": "https://github.com/MacHonzee/strava-api-tools/issues"
-  },
-  "homepage": "https://github.com/MacHonzee/strava-api-tools#readme",
   "dependencies": {
-    "axios": "^1.7.2",
-    "express": "^4.19.2",
-    "open": "^10.1.0"
+    "@electron-toolkit/preload": "^3.0.1",
+    "@electron-toolkit/utils": "^3.0.0",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@fontsource/roboto": "^5.1.0",
+    "@mui/icons-material": "^6.1.2",
+    "@mui/material": "^6.1.2",
+    "dayjs": "^1.11.13",
+    "electron-updater": "^6.1.7",
+    "pouchdb": "^9.0.0",
+    "pouchdb-adapter-leveldb": "^9.0.0",
+    "pouchdb-find": "^9.0.0",
+    "react-router-dom": "^6.26.2"
   },
   "devDependencies": {
-    "eslint-config-prettier": "^9.1.0",
-    "prettier": "3.3.3"
+    "@electron-toolkit/eslint-config-prettier": "^2.0.0",
+    "@electron-toolkit/eslint-config-ts": "^2.0.0",
+    "@electron-toolkit/tsconfig": "^1.0.1",
+    "@mui/types": "^7.2.17",
+    "@types/node": "^20.14.8",
+    "@types/pouchdb": "^6.4.2",
+    "@types/pouchdb-find": "^7.3.3",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "electron": "^31.0.2",
+    "electron-builder": "^24.13.3",
+    "electron-vite": "^2.3.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.3",
+    "prettier": "^3.3.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.5.2",
+    "vite": "^5.3.1"
   }
 }

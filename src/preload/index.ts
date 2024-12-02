@@ -1,11 +1,17 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
+import './index.d'
 
 // Custom APIs for renderer
 const api = {
-  db: {
-    get: (id: string): unknown => ipcRenderer.invoke('db-get', id),
-    put: (doc: unknown): unknown => ipcRenderer.invoke('db-put', doc)
+  Athlete: {
+    get: (id: string): Promise<Athlete> => ipcRenderer.invoke('athlete-get', id),
+    loadSelf: (): Promise<Athlete> => ipcRenderer.invoke('athlete-load-self'),
+    list: (): Promise<Athlete[]> => ipcRenderer.invoke('athlete-list'),
+    create: (data: Athlete): Promise<Athlete> => ipcRenderer.invoke('athlete-create', data),
+    update: (data: Athlete): Promise<Athlete> => ipcRenderer.invoke('athlete-update', data),
+    delete: (id: string, rev: string): Promise<void> =>
+      ipcRenderer.invoke('athlete-delete', id, rev)
   }
 }
 

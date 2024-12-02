@@ -1,11 +1,9 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import PouchDB from 'pouchdb'
-import PouchDBAdapterLevelDB from 'pouchdb-adapter-leveldb'
-
-PouchDB.plugin(PouchDBAdapterLevelDB)
+import { declareEntityHandles } from './handlers/handlers'
+import AthleteEntity from './entities/athlete'
 
 function createWindow(): void {
   // Create the browser window.
@@ -42,7 +40,7 @@ function createWindow(): void {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
 
@@ -53,31 +51,9 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window)
   })
 
-  // Set up PouchDB with persistent storage
-  const dbPath = join(app.getPath('userData'), 'pouchdb')
-  const db = new PouchDB(dbPath, { adapter: 'leveldb' })
-
-  // IPC handler for fetching a document
-  ipcMain.handle('db-get', async (_event, id) => {
-    try {
-      const doc = await db.get(id)
-      return { success: true, data: doc }
-    } catch (error) {
-      console.error('DB get error:', error)
-      return { success: false, error: 'Document not found' }
-    }
-  })
-
-  // IPC handler for saving a document
-  ipcMain.handle('db-put', async (_event, doc) => {
-    try {
-      const response = await db.put(doc)
-      return { success: true, data: response }
-    } catch (error) {
-      console.error('DB put error:', error)
-      return { success: false, error: 'Failed to save document' }
-    }
-  })
+  // TODO hooks that can potentially fail, implement some error handling
+  declareEntityHandles()
+  await AthleteEntity.init()
 
   createWindow()
 
